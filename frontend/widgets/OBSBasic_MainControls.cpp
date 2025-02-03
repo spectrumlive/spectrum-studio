@@ -293,7 +293,7 @@ void OBSBasic::UploadLog(const char *subdir, const char *file, const bool crash)
 void OBSBasic::on_actionShowLogs_triggered()
 {
 	char logDir[512];
-	if (GetAppConfigPath(logDir, sizeof(logDir), "obs-studio/logs") <= 0)
+	if (GetAppConfigPath(logDir, sizeof(logDir), "SPECTRUMLiveStudio/logs") <= 0)
 		return;
 
 	QUrl url = QUrl::fromLocalFile(QT_UTF8(logDir));
@@ -302,12 +302,12 @@ void OBSBasic::on_actionShowLogs_triggered()
 
 void OBSBasic::on_actionUploadCurrentLog_triggered()
 {
-	UploadLog("obs-studio/logs", App()->GetCurrentLog(), false);
+	UploadLog("SPECTRUMLiveStudio/logs", App()->GetCurrentLog(), false);
 }
 
 void OBSBasic::on_actionUploadLastLog_triggered()
 {
-	UploadLog("obs-studio/logs", App()->GetLastLog(), false);
+	UploadLog("SPECTRUMLiveStudio/logs", App()->GetLastLog(), false);
 }
 
 void OBSBasic::on_actionViewCurrentLog_triggered()
@@ -324,7 +324,7 @@ void OBSBasic::on_actionViewCurrentLog_triggered()
 void OBSBasic::on_actionShowCrashLogs_triggered()
 {
 	char logDir[512];
-	if (GetAppConfigPath(logDir, sizeof(logDir), "obs-studio/crashes") <= 0)
+	if (GetAppConfigPath(logDir, sizeof(logDir), "SPECTRUMLiveStudio/crashes") <= 0)
 		return;
 
 	QUrl url = QUrl::fromLocalFile(QT_UTF8(logDir));
@@ -333,7 +333,7 @@ void OBSBasic::on_actionShowCrashLogs_triggered()
 
 void OBSBasic::on_actionUploadLastCrashLog_triggered()
 {
-	UploadLog("obs-studio/crashes", App()->GetLastCrashLog(), true);
+	UploadLog("SPECTRUMLiveStudio/crashes", App()->GetLastCrashLog(), true);
 }
 
 void OBSBasic::on_actionCheckForUpdates_triggered()
@@ -444,7 +444,7 @@ void OBSBasic::on_actionShowWhatsNew_triggered()
 
 void OBSBasic::on_actionReleaseNotes_triggered()
 {
-	QString addr("https://github.com/obsproject/obs-studio/releases");
+	QString addr("https://github.com/obsproject/SPECTRUMLiveStudio/releases");
 	QUrl url(QString("%1/%2").arg(addr, obs_get_version_string()), QUrl::TolerantMode);
 	QDesktopServices::openUrl(url);
 }
