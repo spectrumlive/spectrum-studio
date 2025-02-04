@@ -1884,21 +1884,11 @@ void OBSBasic::UpdateTitleBar()
 	stringstream name;
 
 	const char *profile = config_get_string(App()->GetUserConfig(), "Basic", "Profile");
-	const char *sceneCollection = config_get_string(App()->GetUserConfig(), "Basic", "SceneCollection");
-
-	name << "SPECTRUM Live ";
-	if (previewProgramMode)
-		name << "Studio ";
-
-	name << App()->GetVersionString(false);
-	if (safe_mode)
-		name << " (" << Str("TitleBar.SafeMode") << ")";
-	if (App()->IsPortableMode())
-		name << " - " << Str("TitleBar.PortableMode");
-
+	
+	name << "SPECTRUM Live Studio";
 	name << " - " << Str("TitleBar.Profile") << ": " << profile;
 	name << " - " << Str("TitleBar.Scenes") << ": " << sceneCollection;
-
+	
 	setWindowTitle(QT_UTF8(name.str().c_str()));
 }
 
