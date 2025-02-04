@@ -47,6 +47,7 @@ extern volatile bool recording_paused;
 
 class ColorSelect;
 class OBSAbout;
+class SPTAbout;
 class OBSBasicAdvAudio;
 class OBSBasicFilters;
 class OBSBasicInteraction;
@@ -562,6 +563,7 @@ private:
 	QPointer<OBSBasicAdvAudio> advAudioWindow;
 	QPointer<OBSBasicFilters> filters;
 	QPointer<OBSAbout> about;
+	QPointer<SPTAbout> spectrumAbout;
 	QPointer<OBSLogViewer> logView;
 	QPointer<QWidget> stats;
 	QPointer<QWidget> remux;

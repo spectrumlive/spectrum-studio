@@ -34,6 +34,7 @@
 #include <dialogs/OBSBasicInteraction.hpp>
 #include <dialogs/OBSBasicProperties.hpp>
 #include <dialogs/OBSBasicTransform.hpp>
+#include <dialogs/SPTAbout.hpp>
 #include <settings/OBSBasicSettings.hpp>
 #include <utility/QuickTransition.hpp>
 #include <utility/SceneRenameDelegate.hpp>
@@ -1884,7 +1885,8 @@ void OBSBasic::UpdateTitleBar()
 	stringstream name;
 
 	const char *profile = config_get_string(App()->GetUserConfig(), "Basic", "Profile");
-	
+	const char *sceneCollection = config_get_string(App()->GetUserConfig(), "Basic", "SceneCollection");
+
 	name << "SPECTRUM Live Studio";
 	name << " - " << Str("TitleBar.Profile") << ": " << profile;
 	name << " - " << Str("TitleBar.Scenes") << ": " << sceneCollection;
