@@ -308,6 +308,10 @@
     qproperty-icon: url(theme:Dark/entry-clear.svg);
 }
 
+.icon-profile {
+    qproperty-icon: url(theme:Dark/settings/profile.svg);
+}
+
 .icon-gear {
     qproperty-icon: url(theme:Dark/settings/general.svg);
 }
@@ -1522,6 +1526,7 @@ OBSBasicFilters #widget_2 QPushButton {
 /* Settings Icons */
 
 OBSBasicSettings {
+    qproperty-profilelIcon: url(theme:Dark/settings/profile.svg);
     qproperty-generalIcon: url(theme:Dark/settings/general.svg);
     qproperty-appearanceIcon: url(theme:Dark/settings/appearance.svg);
     qproperty-streamIcon: url(theme:Dark/settings/stream.svg);

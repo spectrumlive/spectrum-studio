@@ -82,4 +82,8 @@ target_sources(
     components/VolumeSlider.hpp
     components/WindowCaptureToolbar.cpp
     components/WindowCaptureToolbar.hpp
+    components/spt-setting-account-view.cpp
+    components/spt-setting-account-view.hpp
+    components/spt-complex-header-icon.cpp
+    components/spt-complex-header-icon.hpp
 )

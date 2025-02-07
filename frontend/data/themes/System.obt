@@ -48,6 +48,10 @@
     qproperty-icon: url(:/res/images/entry-clear.svg);
 }
 
+.icon-profile {
+    qproperty-icon: url(:/res/images/settings/profile.svg);
+}
+
 .icon-gear {
     qproperty-icon: url(:/res/images/settings/general.svg);
 }
@@ -178,6 +182,7 @@ OBSQTDisplay {
 /* Settings Icons */
 
 OBSBasicSettings {
+    qproperty-profilelIcon: url(:settings/images/settings/profile.svg);
     qproperty-generalIcon: url(:settings/images/settings/general.svg);
     qproperty-appearanceIcon: url(:settings/images/settings/appearance.svg);
     qproperty-streamIcon: url(:settings/images/settings/stream.svg);

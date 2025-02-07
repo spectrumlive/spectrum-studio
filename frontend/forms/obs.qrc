@@ -85,6 +85,7 @@
     <file>images/settings/hotkeys.svg</file>
     <file>images/settings/accessibility.svg</file>
     <file>images/settings/appearance.svg</file>
+    <file>images/settings/profile.svg</file>
   </qresource>
   <qresource prefix="">
     <file>fonts/OpenSans-Regular.ttf</file>
