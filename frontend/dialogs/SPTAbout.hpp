@@ -4,6 +4,7 @@
 #include "OBSAbout.hpp"
 
 #include <QDialog>
+#include <QPointer>
 
 class SPTAbout : public QDialog {
 	Q_OBJECT
@@ -15,6 +16,6 @@ public:
 	
 private:
 	QPointer<OBSAbout> about;
-	
+
 };
 
