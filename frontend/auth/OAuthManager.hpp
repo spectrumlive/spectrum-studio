@@ -47,7 +47,7 @@ private:
 	QTcpServer server;
 	QString accessToken;
 	const QString SUPABASE_URL = "https://supadev.dome.cloud";
-	const QString SUPABASE_CLIENT_ID = "your-client-id";
-	const QString REDIRECT_URI = "http://localhost:3000";  // Local server to capture token
+	const QString SUPABASE_CLIENT_ID = "";
+	const QString REDIRECT_URI = "https://beta.spectrulive.xyz/proxy-handler";
 };
 

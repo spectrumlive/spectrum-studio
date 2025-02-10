@@ -21,8 +21,8 @@ SPTAuthenticate::SPTAuthenticate(QWidget *parent) : QWidget(parent), ui(new Ui::
    
    QObject::connect(&mAuthManager, &OAuthManager::loginSuccess, [this](const QString &token) {
       qDebug() << "Login successful! Token:" << token;
-      this->hide();
       this->mpMainWindow->show();
+      this->close();
    });
    
    QObject::connect(&mAuthManager, &OAuthManager::loginFailed, [](const QString &error) {
@@ -33,7 +33,7 @@ SPTAuthenticate::SPTAuthenticate(QWidget *parent) : QWidget(parent), ui(new Ui::
 void SPTAuthenticate::initUi()
 {
    this->setFixedSize(size());
-   ui->btnGoogleMail->setDisabled(true);
+//   ui->btnGoogleMail->setDisabled(true);
    ui->btnAppleID->setDisabled(true);
    connect(ui->btnGoogleMail, &QPushButton::clicked, this, [this](){
       this->mAuthManager.startLogin(QtEnumToQString<OAuthProvider::Provider>(OAuthProvider::GOOGLE));
