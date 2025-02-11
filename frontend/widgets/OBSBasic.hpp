@@ -218,6 +218,7 @@ class OBSBasic : public OBSMainWindow {
 	Q_PROPERTY(QIcon defaultIcon READ GetDefaultIcon WRITE SetDefaultIcon DESIGNABLE true)
 	Q_PROPERTY(QIcon audioProcessOutputIcon READ GetAudioProcessOutputIcon WRITE SetAudioProcessOutputIcon
 			   DESIGNABLE true)
+	Q_PROPERTY(QIcon sptNotificationIcon READ GetSptNotificationIcon WRITE SetSptNotificationIcon DESIGNABLE true)
 
 	friend class OBSAbout;
 	friend class OBSBasicPreview;
@@ -513,6 +514,7 @@ private:
 	QIcon sceneIcon;
 	QIcon defaultIcon;
 	QIcon audioProcessOutputIcon;
+	QIcon sptNotificationIcon;
 
 	QIcon GetImageIcon() const;
 	QIcon GetColorIcon() const;
@@ -528,6 +530,7 @@ private:
 	QIcon GetBrowserIcon() const;
 	QIcon GetDefaultIcon() const;
 	QIcon GetAudioProcessOutputIcon() const;
+	QIcon GetSptNotificationIcon() const;
 
 private slots:
 	void SetImageIcon(const QIcon &icon);
@@ -546,6 +549,7 @@ private slots:
 	void SetSceneIcon(const QIcon &icon);
 	void SetDefaultIcon(const QIcon &icon);
 	void SetAudioProcessOutputIcon(const QIcon &icon);
+	void SetSptNotificationIcon(const QIcon &icon);
 
 public:
 	QIcon GetSourceIcon(const char *id) const;
