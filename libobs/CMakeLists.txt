@@ -14,6 +14,9 @@ find_package(FFmpeg 6.1 REQUIRED avformat avutil swscale swresample OPTIONAL_COM
 find_package(ZLIB REQUIRED)
 find_package(Uthash REQUIRED)
 
+set(OPENSSL_ROOT_DIR "${CMAKE_BINARY_DIR}/deps/openssl")
+find_package(OpenSSL REQUIRED)
+
 if(ENABLE_UI)
   find_package(Qt6 REQUIRED Core)
 endif()
@@ -257,6 +260,8 @@ target_link_libraries(
     FFmpeg::avutil
     FFmpeg::swscale
     FFmpeg::swresample
+    OpenSSL::Crypto
+    OpenSSL::SSL
     jansson::jansson
     Uthash::Uthash
     ZLIB::ZLIB

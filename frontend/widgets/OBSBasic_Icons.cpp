@@ -2,6 +2,7 @@
     Copyright (C) 2023 by Lain Bailey <lain@obsproject.com>
                           Zachary Lund <admin@computerquip.com>
                           Philippe Groarke <philippe.groarke@gmail.com>
+			  Nanusorn Photpipat <nanusorn@photpipat.com>
 
     This program is free software: you can redistribute it and/or modify
     it under the terms of the GNU General Public License as published by
@@ -227,5 +228,5 @@ QIcon OBSBasic::GetAudioProcessOutputIcon() const
 
 QIcon OBSBasic::GetSptNotificationIcon() const
 {
-	return sptNotificationIcon;
+   return sptNotificationIcon;
 }

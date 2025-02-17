@@ -14,6 +14,9 @@ endif()
 find_package(FFmpeg REQUIRED COMPONENTS avcodec avutil avformat)
 find_package(CURL REQUIRED)
 
+set(OPENSSL_ROOT_DIR "${CMAKE_BINARY_DIR}/deps/openssl")
+find_package(OpenSSL REQUIRED)
+
 if(NOT TARGET OBS::json11)
   add_subdirectory("${CMAKE_SOURCE_DIR}/deps/json11" json11)
 endif()
@@ -36,6 +39,8 @@ target_link_libraries(
     FFmpeg::avcodec
     FFmpeg::avutil
     FFmpeg::avformat
+    OpenSSL::Crypto
+    OpenSSL::SSL
     OBS::libobs
     OBS::frontend-api
     OBS::json11

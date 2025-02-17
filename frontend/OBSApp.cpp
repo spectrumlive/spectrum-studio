@@ -1086,11 +1086,15 @@ bool OBSApp::OBSInit()
 	connect(mainWindow, &OBSBasic::destroyed, this, &OBSApp::quit);
 
 	mainWindow->OBSInit();
-	
-	mainWindow->hide();
-	authWindow = new SPTAuthenticate();
-   	authWindow->setMainWindow(mainWindow);
-	authWindow->show();
+
+   // Check authenticate timeout
+   if (config_get_int(userConfig, "UserInfo", "timeout") < QDateTime::currentSecsSinceEpoch()) {
+      mainWindow->hide();
+      authWindow = new SPTAuthenticate();
+      authWindow->clearUserInfo();
+      authWindow->setMainWindow(mainWindow);
+      authWindow->show();
+   }
 
 	connect(this, &QGuiApplication::applicationStateChanged,
 		[this](Qt::ApplicationState state) { ResetHotkeyState(state == Qt::ApplicationActive); });

@@ -17,28 +17,28 @@
 
 #pragma once
 
-#include "ui_SPTAuthenticate.h"
-#include "auth/OAuthManager.hpp"
-#include "auth/SPTServiceManager.hpp"
-#include <QWidget>
-#include <QMainWindow>
+#include <QCoreApplication>
 #include <QNetworkAccessManager>
+#include <QNetworkRequest>
+#include <QNetworkReply>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QDebug>
+#include <functional>
 
-class SPTAuthenticate: public QWidget {
-    Q_OBJECT
-
-public:
-   explicit SPTAuthenticate(QWidget *parent = nullptr);
-   ~SPTAuthenticate();
-   std::unique_ptr<Ui::SPTAuthenticate> ui;
-   void setMainWindow(QMainWindow* mainWindow) { this->mpMainWindow = mainWindow; }
-   void clearUserInfo();
+class SPTServiceManager: public QObject {
+   Q_OBJECT
    
-protected:
-   void initUi();
+public:
+   explicit SPTServiceManager(QObject *parent = nullptr);
+   using Callback = std::function<void(const QJsonObject&, bool, QString)>;
+   void sendGetRequest(const QString &url, const QString &token = "", Callback callback = nullptr);
+   
+private slots:
+   void onReplyFinished(QNetworkReply *reply);
    
 private:
-   OAuthManager *mpAuthManager;
-   SPTServiceManager mSerivceManager;
-   QMainWindow *mpMainWindow;
+   QNetworkAccessManager *manager;
+   QMap<QNetworkReply*, Callback> callbacks;
 };
+
