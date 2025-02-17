@@ -17,12 +17,6 @@
 
 #include "SPTAPIServices.hpp"
 
-//static size_t WriteCallback(const char *in, size_t size, size_t num, char *out)
-//{
-//   std::string data(in, (std::size_t) size * num);
-//   *((std::stringstream*) out) << data;
-//   return size * num;
-//}
 class CurlWrite
 {
 public:
