@@ -71,7 +71,3 @@ void SPTAuthenticate::initUi()
    });
 }
 
-void SPTAuthenticate::clearUserInfo()
-{
-   this->mpAuthManager->clearUserInfo();
-}

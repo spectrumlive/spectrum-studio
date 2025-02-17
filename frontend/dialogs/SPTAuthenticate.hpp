@@ -32,7 +32,7 @@ public:
    ~SPTAuthenticate();
    std::unique_ptr<Ui::SPTAuthenticate> ui;
    void setMainWindow(QMainWindow* mainWindow) { this->mpMainWindow = mainWindow; }
-   void clearUserInfo();
+   void clearUserInfo() { this->mpAuthManager->clearUserInfo(); }
    
 protected:
    void initUi();

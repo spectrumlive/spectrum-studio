@@ -121,5 +121,13 @@ void OAuthManager::saveUserInfo(const QString &strToken, const QString &strDonat
 }
 
 void OAuthManager::clearUserInfo() {
-   
+   config_set_string(App()->GetUserConfig(), "UserInfo", "email", "");
+   config_set_string(App()->GetUserConfig(), "UserInfo", "full_name", "");
+   config_set_string(App()->GetUserConfig(), "UserInfo", "avatar_url", "");
+   config_set_string(App()->GetUserConfig(), "UserInfo", "provider", "");
+   config_set_int(App()->GetUserConfig(), "UserInfo", "timeout", 0);
+   config_set_string(App()->GetUserConfig(), "UserInfo", "token", "");
+   config_set_string(App()->GetUserConfig(), "UserInfo", "donation_slug", "");
+   config_set_string(App()->GetUserConfig(), "UserInfo", "live_slug", "");
+   config_set_string(App()->GetUserConfig(), "UserInfo", "wallet_address", "");
 }
