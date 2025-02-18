@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>345</width>
-    <height>163</height>
+    <width>110</width>
+    <height>110</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -16,42 +16,31 @@
   <property name="scaledContents">
    <bool>true</bool>
   </property>
-  <layout class="QVBoxLayout" name="verticalLayout">
-   <property name="spacing">
-    <number>0</number>
+  <widget class="QLabel" name="PlatformLabel">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>80</y>
+     <width>51</width>
+     <height>16</height>
+    </rect>
    </property>
-   <property name="leftMargin">
-    <number>0</number>
+   <property name="acceptDrops">
+    <bool>true</bool>
    </property>
-   <property name="topMargin">
-    <number>0</number>
+   <property name="text">
+    <string>Platform</string>
    </property>
-   <property name="rightMargin">
-    <number>13</number>
+   <property name="scaledContents">
+    <bool>true</bool>
    </property>
-   <property name="bottomMargin">
-    <number>0</number>
+   <property name="alignment">
+    <set>Qt::AlignmentFlag::AlignCenter</set>
    </property>
-   <item alignment="Qt::AlignRight|Qt::AlignBottom">
-    <widget class="QLabel" name="PlatformLabel">
-     <property name="acceptDrops">
-      <bool>true</bool>
-     </property>
-     <property name="text">
-      <string>Platform</string>
-     </property>
-     <property name="scaledContents">
-      <bool>true</bool>
-     </property>
-     <property name="alignment">
-      <set>Qt::AlignCenter</set>
-     </property>
-     <property name="wordWrap">
-      <bool>true</bool>
-     </property>
-    </widget>
-   </item>
-  </layout>
+   <property name="wordWrap">
+    <bool>true</bool>
+   </property>
+  </widget>
  </widget>
  <resources/>
  <connections/>

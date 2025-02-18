@@ -17,10 +17,17 @@
 
 #include "spt-setting-account-view.hpp"
 #include "ui_SPTSettingAccountView.h"
+#include "SPTFileDownloader.hpp"
+#include "util/config-file.h"
+#include <OBSApp.hpp>
 #include <QDebug>
 
-SPTSettingAccountView::SPTSettingAccountView(QWidget *parent) : QWidget(parent),
-	ui(new Ui::SPTSettingAccountView)
+
+SPTSettingAccountView::SPTSettingAccountView(QWidget *parent) :
+   QWidget(parent),
+	ui(new Ui::SPTSettingAccountView),
+   mProviderMetaObject(this->staticMetaObject),
+   mProviderMetaEnum(mProviderMetaObject.enumerator(mProviderMetaObject.indexOfEnumerator("EnumProvider")))
 {
 	ui->setupUi(this);
 	initUi();
@@ -30,10 +37,44 @@ SPTSettingAccountView::~SPTSettingAccountView()
 {
 }
 
+QString SPTSettingAccountView::getProviderImage(const QString &provider) const
+{
+   switch (mProviderMetaEnum.keyToValue(provider.toUpper().toLatin1())) {
+      case GOOGLE:
+         return QString(":/providers/images/providers/img-google-profile.svg");
+      case APPLE:
+         return QString(":/providers/images/providers/img-apple-profile.svg");
+      case FACEBOOK:
+         return QString(":/providers/images/providers/img-facebook-profile.svg");
+   }   
+   return QString("");
+}
+
+
 void SPTSettingAccountView::initUi()
 {
+   ui->btnLogout->hide();
 	QString filePath = ":/settings/images/settings/profile.svg";
-	ui->userIconLabel->setPixmap(filePath, QSize(110, 110));
+   QString avatarUrl = config_get_string(App()->GetUserConfig(), "UserInfo", "avatar_url");
+   QString providerImage = getProviderImage(config_get_string(App()->GetUserConfig(), "UserInfo", "provider"));
+   qDebug() << providerImage;
+   ui->userIconLabel->setPlatformPixmap(providerImage, QSize(18,18));
+
+   if (avatarUrl.length()>0) {
+      m_pImgCtrl = new SPTFileDownloader(this);
+      QObject::connect(m_pImgCtrl, &SPTFileDownloader::imageDownloaded, [this](const QPixmap &pixmap) {
+         this->ui->userIconLabel->setPixmap(pixmap);
+         this->ui->userIconLabel->show();
+      });
+      m_pImgCtrl->downloadImage(QUrl(avatarUrl));
+   } else {
+      ui->userIconLabel->setPixmap(filePath, QSize(110, 110));
+   }
+   
+   ui->nickName->setText(config_get_string(App()->GetUserConfig(), "UserInfo", "full_name"));
+   ui->email->setText(config_get_string(App()->GetUserConfig(), "UserInfo", "email"));
+   ui->walletID->setText(config_get_string(App()->GetUserConfig(), "UserInfo", "wallet_address"));
+   
 }
 
 void SPTSettingAccountView::on_pushButton_logout_clicked()

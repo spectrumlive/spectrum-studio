@@ -53,6 +53,11 @@ void SPTComplexHeaderIcon::setPixmap(const QString &pix, const QSize &size)
 	this->QLabel::setPixmap(pixmap.scaled(size, Qt::IgnoreAspectRatio, Qt::SmoothTransformation));
 }
 
+void SPTComplexHeaderIcon::setPixmap(const QPixmap &pix)
+{
+   this->QLabel::setPixmap(pix);
+}
+
 void SPTComplexHeaderIcon::setPlatformPixmap(const QString &pix, const QSize &size)
 {
 	QSvgRenderer svgRenderer(pix);
@@ -65,7 +70,6 @@ void SPTComplexHeaderIcon::setPlatformPixmap(const QString &pix, const QSize &si
 
 void SPTComplexHeaderIcon::setPlatformPixmap(const QPixmap &pix)
 {
-
 	ui->PlatformLabel->setPixmap(pix);
 	ui->PlatformLabel->show();
 }

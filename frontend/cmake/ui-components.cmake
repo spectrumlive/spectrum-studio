@@ -86,4 +86,6 @@ target_sources(
     components/spt-setting-account-view.hpp
     components/spt-complex-header-icon.cpp
     components/spt-complex-header-icon.hpp
+    components/SPTFileDownloader.cpp
+    components/SPTFileDownloader.hpp
 )
