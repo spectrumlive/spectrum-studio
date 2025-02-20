@@ -205,8 +205,8 @@ bool AddNew(QWidget *parent, const char *id, const char *name, const bool visibl
 
 	} else {
 		const char *v_id = obs_get_latest_input_type_id(id);
-      OBSDataAutoRelease settings = obs_data_create();
-      obs_data_set_string(settings, "live_slug", config_get_string(App()->GetUserConfig(), "UserInfo", "live_slug"));
+      		OBSDataAutoRelease settings = obs_data_create();
+      		obs_data_set_string(settings, "live_slug", config_get_string(App()->GetUserConfig(), "UserInfo", "live_slug"));
 		source = obs_source_create(v_id, name, settings, nullptr);
 
 		if (source) {
