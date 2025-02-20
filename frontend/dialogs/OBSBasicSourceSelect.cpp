@@ -205,7 +205,9 @@ bool AddNew(QWidget *parent, const char *id, const char *name, const bool visibl
 
 	} else {
 		const char *v_id = obs_get_latest_input_type_id(id);
-		source = obs_source_create(v_id, name, NULL, nullptr);
+      OBSDataAutoRelease settings = obs_data_create();
+      obs_data_set_string(settings, "live_slug", config_get_string(App()->GetUserConfig(), "UserInfo", "live_slug"));
+		source = obs_source_create(v_id, name, settings, nullptr);
 
 		if (source) {
 			AddSourceData data;
@@ -242,6 +244,7 @@ void OBSBasicSourceSelect::on_buttonBox_accepted()
 		if (!item)
 			return;
 
+      QString live_slug = config_get_string(App()->GetUserConfig(), "UserInfo", "live_slug");
 		QString source_name = item->text();
 		AddExisting(QT_TO_UTF8(source_name), visible, false, nullptr, nullptr, nullptr, nullptr);
 
@@ -298,6 +301,7 @@ void OBSBasicSourceSelect::on_buttonBox_accepted()
 		obs_data_set_int(wrapper, "item_id", obs_sceneitem_get_id(item));
 		obs_data_set_string(wrapper, "name", ui->sourceName->text().toUtf8().constData());
 		obs_data_set_bool(wrapper, "visible", visible);
+      obs_data_set_string(wrapper, "live_slug", config_get_string(App()->GetUserConfig(), "UserInfo", "live_slug"));
 
 		auto redo = [scene_name, main](const std::string &data) {
 			OBSSourceAutoRelease scene_source = obs_get_source_by_name(scene_name.c_str());
