@@ -57,7 +57,6 @@ void SPTSettingAccountView::initUi()
 	QString filePath = ":/settings/images/settings/profile.svg";
    QString avatarUrl = config_get_string(App()->GetUserConfig(), "UserInfo", "avatar_url");
    QString providerImage = getProviderImage(config_get_string(App()->GetUserConfig(), "UserInfo", "provider"));
-   qDebug() << providerImage;
    ui->userIconLabel->setPlatformPixmap(providerImage, QSize(18,18));
 
    if (avatarUrl.length()>0) {
