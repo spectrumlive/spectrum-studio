@@ -54,11 +54,15 @@ public:
    void startLogin(QString strProvider);
    void saveUserInfo(const QString &strToken, const QString &strDonationSlug,
                      const QString &strLiveSlug, const QString &strWallet);
+   QJsonObject logout();
    void clearUserInfo();
 
 signals:
    void loginSuccess(const QString &accessToken);
 	void loginFailed(const QString &error);
+   
+protected:
+   QJsonObject ObjectFromString(const QString& in);
 
 private slots:
    void handleNewConnection();
@@ -69,8 +73,8 @@ private:
 	QTcpServer server;
 	QString accessToken;
    ConfigFile userConfig;
-   const QString SUPABASE_URL = "https://wqpfdqfjmtohaernictc.supabase.co";
-	const QString SUPABASE_CLIENT_ID = "";
+   const QString SPECTRUMLIVE_URL = "https://wqpfdqfjmtohaernictc.supabase.co";
 	const QString REDIRECT_URI = "https://beta.spectrumlive.xyz/proxy-handler";
+   const QString SPECTRUMLIVE_LOGOUT = "https://beta.spectrumlive.xyz/api/auth/logout";
 };
 

@@ -22,11 +22,24 @@
 #include <QJsonDocument>
 #include <QJsonObject>
 #include <QDebug>
+#include "curl/curl.h"
 
 #if !defined(_WIN32) && !defined(__APPLE__)
 #include <obs-nix-platform.h>
 #endif
 #include <qt-wrappers.hpp>
+
+class AuthRespWrite
+{
+public:
+   static size_t writeData(void* ptr, size_t size, size_t nmemb, void* buffer)
+   {
+   Q_UNUSED(size);
+   ((std::string*) buffer)->append((char*) ptr, nmemb);
+   return nmemb;
+   }
+};
+
 
 OAuthManager::OAuthManager(QObject *parent) : QObject(parent) {
    connect(&server, &QTcpServer::newConnection, this, &OAuthManager::handleNewConnection);
@@ -40,8 +53,8 @@ void OAuthManager::startLogin(QString strProvider) {
      return;
    }
 
-   // Construct Supabase OAuth URL
-   QUrl authUrl(QString("%1/auth/v1/authorize").arg(SUPABASE_URL));
+   // Construct SpectrumLive OAuth URL
+   QUrl authUrl(QString("%1/auth/v1/authorize").arg(SPECTRUMLIVE_URL));
    QUrlQuery query;
    query.addQueryItem("provider", strProvider.toLower());  // Change for other providers
    query.addQueryItem("redirect_to", REDIRECT_URI);
@@ -87,7 +100,7 @@ void OAuthManager::handleNewConnection() {
 }
 
 void OAuthManager::fetchUserInfo() {
-    QNetworkRequest request(QUrl(QString("%1/auth/v1/user").arg(SUPABASE_URL)));
+    QNetworkRequest request(QUrl(QString("%1/auth/v1/user").arg(SPECTRUMLIVE_URL)));
     request.setRawHeader("Authorization", "Bearer " + accessToken.toUtf8());
 
     QNetworkReply *reply = networkManager.get(request);
@@ -130,4 +143,54 @@ void OAuthManager::clearUserInfo() {
    config_set_string(App()->GetUserConfig(), "UserInfo", "donation_slug", "");
    config_set_string(App()->GetUserConfig(), "UserInfo", "live_slug", "");
    config_set_string(App()->GetUserConfig(), "UserInfo", "wallet_address", "");
+}
+
+QJsonObject OAuthManager::logout() {
+   CURL *curl;
+   curl = curl_easy_init();
+   
+   if (!curl) {
+      return ObjectFromString(QString("{\"success\": false, \"description\": \"initialize failed\""));
+   }
+   
+   // set options
+   QString strToken = config_get_string(App()->GetUserConfig(), "UserInfo", "token");
+   std::string out;
+   
+   curl_easy_setopt(curl, CURLOPT_TIMEOUT, 10);
+   curl_easy_setopt(curl, CURLOPT_URL, SPECTRUMLIVE_LOGOUT.toStdString().c_str());
+   curl_easy_setopt(curl, CURLOPT_XOAUTH2_BEARER, strToken.toStdString().c_str());
+   curl_easy_setopt(curl, CURLOPT_HTTPAUTH, CURLAUTH_BEARER);
+   curl_easy_setopt(curl, CURLOPT_WRITEFUNCTION, AuthRespWrite::writeData);
+   curl_easy_setopt(curl, CURLOPT_WRITEDATA, &out);
+   
+   CURLcode result = curl_easy_perform(curl);
+   
+   if (result != CURLE_OK) {
+      return ObjectFromString(QString("{\"success\": false, \"description\": %1").arg(curl_easy_strerror(result)));
+   }
+   
+   curl_easy_cleanup(curl);
+   
+   return ObjectFromString(out.c_str());
+      
+}
+
+QJsonObject OAuthManager::ObjectFromString(const QString& in) {
+   QJsonObject obj;
+   QJsonDocument doc = QJsonDocument::fromJson(in.toUtf8());
+   
+      // check validity of the document
+   if(!doc.isNull()) {
+      if(doc.isObject()) {
+         obj = doc.object();
+      }
+      else  {
+         qDebug() << "Document is not an object";
+      }
+   }
+   else {
+      qDebug() << "Invalid JSON...\n" << in;
+   }
+   return obj;
 }
