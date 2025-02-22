@@ -45,6 +45,9 @@ OBSBasicControls::OBSBasicControls(OBSBasic *main) : QFrame(nullptr), ui(new Ui:
 		ui->settingsButton, &QPushButton::clicked, this, [this]() { emit this->SettingsButtonClicked(); },
 		Qt::DirectConnection);
 	connect(
+	     	ui->logoutButton, &QPushButton::clicked, this, [this]() { emit this->LogoutButtonClicked(); },
+	      	Qt::DirectConnection);
+	connect(
 		ui->exitButton, &QPushButton::clicked, this, [this]() { emit this->ExitButtonClicked(); },
 		Qt::DirectConnection);
 

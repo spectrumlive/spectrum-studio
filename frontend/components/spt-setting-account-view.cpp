@@ -35,6 +35,7 @@ SPTSettingAccountView::SPTSettingAccountView(QWidget *parent) :
 
 SPTSettingAccountView::~SPTSettingAccountView()
 {
+   delete(ui);
 }
 
 QString SPTSettingAccountView::getProviderImage(const QString &provider) const
@@ -74,9 +75,10 @@ void SPTSettingAccountView::initUi()
    ui->email->setText(config_get_string(App()->GetUserConfig(), "UserInfo", "email"));
    ui->walletID->setText(config_get_string(App()->GetUserConfig(), "UserInfo", "wallet_address"));
    
+   connect(&manager, &QNetworkAccessManager::finished, this, &SPTSettingAccountView::onManagerFinished);
 }
 
-void SPTSettingAccountView::on_pushButton_logout_clicked()
+void SPTSettingAccountView::onManagerFinished(QNetworkReply *reply)
 {
-	qDebug() << __FUNCTION__;
+   qDebug()<< reply->readAll();
 }

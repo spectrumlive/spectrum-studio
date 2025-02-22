@@ -33,7 +33,7 @@ public:
 signals:
    void imageDownloaded(const QPixmap &pixmap);
    
-   private slots:
+private slots:
    void onImageDownloaded(QNetworkReply *reply);
    
 private:

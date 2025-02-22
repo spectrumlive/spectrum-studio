@@ -48,7 +48,6 @@ QJsonObject SPTAPIServices::getUserInfo() {
    // callint action
    CURLcode result = curl_easy_perform(curl);
    if (result != CURLE_OK) {
-      qDebug() << "curl perform failed";
       return ObjectFromString(QString("{\"success\": false, \"description\": %1").arg(curl_easy_strerror(result)));
    }
    

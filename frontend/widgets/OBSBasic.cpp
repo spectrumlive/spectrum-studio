@@ -286,6 +286,8 @@ OBSBasic::OBSBasic(QWidget *parent) : OBSMainWindow(parent), undo_s(ui), ui(new 
 	connect(controls, &OBSBasicControls::SettingsButtonClicked, this, &OBSBasic::on_action_Settings_triggered);
 
 	connect(controls, &OBSBasicControls::ExitButtonClicked, this, &QMainWindow::close);
+   
+   	connect(controls, &OBSBasicControls::LogoutButtonClicked, this, &OBSBasic::ProcessLogout);
 
 	startingDockLayout = saveState();
 

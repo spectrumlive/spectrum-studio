@@ -27,8 +27,6 @@ class SPTSettingAccountView;
 
 class SPTSettingAccountView: public QWidget {
 	Q_OBJECT
-   
-
 public:
    enum EnumProvider {
       GOOGLE,
@@ -46,11 +44,12 @@ protected:
    QString getProviderImage(const QString &provider) const;
    
 private slots:
-	void on_pushButton_logout_clicked();
+   void onManagerFinished(QNetworkReply *reply);
 
 private:
 	Ui::SPTSettingAccountView *ui;
    SPTFileDownloader *m_pImgCtrl;
    QMetaObject mProviderMetaObject;
    QMetaEnum mProviderMetaEnum;
+   QNetworkAccessManager manager;
 };

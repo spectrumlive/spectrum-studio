@@ -1594,6 +1594,8 @@ private slots:
 	void VirtualCamActionTriggered();
 
 	void OpenVirtualCamConfig();
+   
+   	void ProcessLogout();
 
 public:
 	inline bool VCamEnabled() const { return vcamEnabled; }
