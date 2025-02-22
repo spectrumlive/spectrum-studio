@@ -876,7 +876,7 @@ static void delete_safe_mode_sentinel(void)
 static constexpr char vcRunErrorTitle[] = "Outdated Visual C++ Runtime";
 static constexpr char vcRunErrorMsg[] = "OBS Studio requires a newer version of the Microsoft Visual C++ "
 					"Redistributables.\n\nYou will now be directed to the download page.";
-static constexpr char vcRunInstallerUrl[] = "https://obsproject.com/visual-studio-2022-runtimes";
+static constexpr char vcRunInstallerUrl[] = "https://spectrumlive.xyz/visual-studio-2022-runtimes";
 
 static bool vc_runtime_outdated()
 {

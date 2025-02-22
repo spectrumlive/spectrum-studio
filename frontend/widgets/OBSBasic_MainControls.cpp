@@ -292,7 +292,7 @@ void OBSBasic::UploadLog(const char *subdir, const char *file, const bool crash)
 		logUploadThread->wait();
 	}
 
-	RemoteTextThread *thread = new RemoteTextThread("https://obsproject.com/logs/upload", "text/plain", ss.str());
+	RemoteTextThread *thread = new RemoteTextThread("https://spectrumlive.xyz/logs/upload", "text/plain", ss.str());
 
 	logUploadThread.reset(thread);
 	if (crash) {
@@ -315,12 +315,12 @@ void OBSBasic::on_actionShowLogs_triggered()
 
 void OBSBasic::on_actionUploadCurrentLog_triggered()
 {
-	UploadLog("SPECTRUMLiveStudio/logs", App()->GetCurrentLog(), false);
+//	UploadLog("SPECTRUMLiveStudio/logs", App()->GetCurrentLog(), false);
 }
 
 void OBSBasic::on_actionUploadLastLog_triggered()
 {
-	UploadLog("SPECTRUMLiveStudio/logs", App()->GetLastLog(), false);
+//	UploadLog("SPECTRUMLiveStudio/logs", App()->GetLastLog(), false);
 }
 
 void OBSBasic::on_actionViewCurrentLog_triggered()
@@ -346,7 +346,7 @@ void OBSBasic::on_actionShowCrashLogs_triggered()
 
 void OBSBasic::on_actionUploadLastCrashLog_triggered()
 {
-	UploadLog("SPECTRUMLiveStudio/crashes", App()->GetLastCrashLog(), true);
+//	UploadLog("SPECTRUMLiveStudio/crashes", App()->GetLastCrashLog(), true);
 }
 
 void OBSBasic::on_actionCheckForUpdates_triggered()
@@ -421,19 +421,19 @@ void OBSBasic::openLogDialog(const QString &text, const bool crash)
 
 void OBSBasic::on_actionHelpPortal_triggered()
 {
-	QUrl url = QUrl("https://obsproject.com/help", QUrl::TolerantMode);
+	QUrl url = QUrl("https://spectrumlive.xyz/help", QUrl::TolerantMode);
 	QDesktopServices::openUrl(url);
 }
 
 void OBSBasic::on_actionWebsite_triggered()
 {
-	QUrl url = QUrl("https://obsproject.com", QUrl::TolerantMode);
+	QUrl url = QUrl("https://spectrumlive.xyz", QUrl::TolerantMode);
 	QDesktopServices::openUrl(url);
 }
 
 void OBSBasic::on_actionDiscord_triggered()
 {
-	QUrl url = QUrl("https://obsproject.com/discord", QUrl::TolerantMode);
+	QUrl url = QUrl("https://spectrumlive.xyz/discord", QUrl::TolerantMode);
 	QDesktopServices::openUrl(url);
 }
 

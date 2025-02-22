@@ -7,7 +7,7 @@
 
 #include "moc_MacUpdateThread.cpp"
 
-static const char *MAC_BRANCHES_URL = "https://obsproject.com/update_studio/branches.json";
+static const char *MAC_BRANCHES_URL = "https://spectrumlive.xyz/update_studio/branches.json";
 static const char *MAC_DEFAULT_BRANCH = "stable";
 
 bool GetBranch(std::string &selectedBranch)

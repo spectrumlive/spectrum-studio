@@ -14,15 +14,15 @@
 #include "moc_WhatsNewInfoThread.cpp"
 
 #ifndef MAC_WHATSNEW_URL
-#define MAC_WHATSNEW_URL "https://obsproject.com/update_studio/whatsnew.json"
+#define MAC_WHATSNEW_URL "https://spectrumlive.xyz/update_studio/whatsnew.json"
 #endif
 
 #ifndef WIN_WHATSNEW_URL
-#define WIN_WHATSNEW_URL "https://obsproject.com/update_studio/whatsnew.json"
+#define WIN_WHATSNEW_URL "https://spectrumlive.xyz/update_studio/whatsnew.json"
 #endif
 
 #ifndef LINUX_WHATSNEW_URL
-#define LINUX_WHATSNEW_URL "https://obsproject.com/update_studio/whatsnew.json"
+#define LINUX_WHATSNEW_URL "https://spectrumlive.xyz/update_studio/whatsnew.json"
 #endif
 
 #ifdef __APPLE__
